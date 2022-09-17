@@ -1,22 +1,16 @@
-import create from 'zustand';
-import {persist, devtools} from 'zustand/middleware';
-import {
-  createBearSlice,
-  createFishSlice,
-  createPeopleSlice,
-  Store,
-} from './slices';
-import {persistConfig} from './persist';
+import create from "zustand";
+import { devtools, persist } from "zustand/middleware";
+import { persistConfig } from "./persist";
+import { createBearSlice, createFishSlice, Store } from "./slices";
 
 export const useStore = create<Store>()(
-  devtools(
-    persist(
-      (...a) => ({
-        ...createBearSlice(...a),
-        ...createFishSlice(...a),
-        ...createPeopleSlice(...a),
-      }),
-      persistConfig,
-    ),
-  ),
+    devtools(
+        persist(
+            (...a) => ({
+                ...createBearSlice(...a),
+                ...createFishSlice(...a),
+            }),
+            persistConfig
+        )
+    )
 );
